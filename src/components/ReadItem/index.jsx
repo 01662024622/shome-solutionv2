@@ -25,9 +25,9 @@ export default function ReadItem({ config }) {
     readColumns.map((props) => {
       const propsKey = props.dataIndex;
       const propsTitle = props.title;
-      const isDate = props.isDate || false;
+      const isRender = !!props.render;
       let value = valueByString(currentResult, propsKey);
-      value = isDate ? dayjs(value).format('DD/MM/YYYY') : value;
+      value = isRender ? props.render(value) : value;
       list.push({ propsKey, label: propsTitle, value: value });
     });
     setListState(list);

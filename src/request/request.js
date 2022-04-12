@@ -102,19 +102,34 @@ const request = {
 
   list: async ({ entity, options = {} }) => {
     try {
-      let query = '?';
-      for (var key in options) {
-        query += key + '=' + options[key] + '&';
-      }
-      query = query.slice(0, -1);
+      // let query = '?';
+      // for (var key in options) {
+      //   query += key + '=' + options[key] + '&';
+      // }
+      // query = query.slice(0, -1);
 
-      const response = await axios.get(entity + '/list' + query);
-
-      successHandler(response, {
+      // const response = await axios.get(entity + '/list' + query);
+      const response = await fetch(API_BASE_URL + entity, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cache
+        // credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Access-Control-Allow-Origin': '*',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(options), // body data type must match "Content-Type" header
+      });
+      const { status } = response;
+      const data = await response.json();
+      successHandler({ data, status }, {
         notifyOnSuccess: false,
         notifyOnFailed: false,
       });
-      return response.data;
+      return data;
     } catch (error) {
       return errorHandler(error);
     }

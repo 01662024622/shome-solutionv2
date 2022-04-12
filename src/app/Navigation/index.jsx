@@ -14,6 +14,7 @@ import {
   DashboardOutlined,
   TeamOutlined,
   UserOutlined,
+HomeOutlined,
   CreditCardOutlined
 } from '@ant-design/icons';
 
@@ -73,9 +74,13 @@ export default function Navigation() {
               <Link to={'/quote'} />
               Báo giá
             </Menu.Item>
+            <Menu.Item key={'Inventory'} icon={<HomeOutlined />}>
+              <Link to={'/inventory'} />
+              Kho hàng
+            </Menu.Item>
             <Menu.Item key={'Payment Invoice'} icon={<CreditCardOutlined />}>
               <Link to={'/payment/invoice'} />
-              Quản lý thanh toán
+              Quản lý vốn
             </Menu.Item>
             <Menu.Item key={'Employee'} icon={<UserOutlined />}>
               <Link to={'/employee'} />

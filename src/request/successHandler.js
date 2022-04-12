@@ -4,7 +4,7 @@ import codeMessage from './codeMessage';
 
 const successHandler = (response, options = { notifyOnSuccess: false, notifyOnFailed: true }) => {
   const { data } = response;
-  if (data && data.success === true) {
+  if (data && data.errorCode === 0) {
     const message = response.data && data.message;
     const successText = message || codeMessage[response.status];
 
@@ -13,7 +13,7 @@ const successHandler = (response, options = { notifyOnSuccess: false, notifyOnFa
         duration: 5,
       });
       notification.success({
-        message: `Request success`,
+        message: `Đăng nhập thành công`,
         description: successText,
       });
     }
@@ -26,7 +26,7 @@ const successHandler = (response, options = { notifyOnSuccess: false, notifyOnFa
         duration: 5,
       });
       notification.error({
-        message: `Request error ${status}`,
+        message: `Lỗi đăng nhập ${status}`,
         description: errorText,
       });
     }

@@ -1,18 +1,18 @@
 import { API_BASE_URL } from '@/config/serverApiConfig';
 
-import axios from 'axios';
 import errorHandler from '@/request/errorHandler';
 import successHandler from '@/request/successHandler';
 
 export const login = async ({ loginData }) => {
   try {
-    const response = await fetch(API_BASE_URL + `login?timestamp=${new Date().getTime()}`, {
+    const response = await fetch(API_BASE_URL + `UserLogin`, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cache
-      credentials: 'include',
+      // credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin': '*',
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow', // manual, *follow, error
@@ -36,10 +36,9 @@ export const login = async ({ loginData }) => {
   }
 };
 export const logout = async () => {
-  axios.defaults.withCredentials = true;
   try {
     window.localStorage.clear();
-    await axios.post(API_BASE_URL + `logout?timestamp=${new Date().getTime()}`);
+    // await axios.post(API_BASE_URL + `logout?timestamp=${new Date().getTime()}`);
   } catch (error) {
     return errorHandler(error);
   }

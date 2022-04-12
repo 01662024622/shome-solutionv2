@@ -6,7 +6,7 @@ export default function LoginForm() {
   return (
     <>
       <Form.Item
-        name="email"
+        name="username"
         rules={[
           {
             required: true,
@@ -16,7 +16,7 @@ export default function LoginForm() {
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Email"
+          placeholder="Tài khoản"
           autoComplete="off"
           size="large"
         />

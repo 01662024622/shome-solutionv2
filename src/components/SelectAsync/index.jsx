@@ -6,7 +6,7 @@ import { Select } from 'antd';
 export default function SelectAsync({
   entity,
   displayLabels = ['name'],
-  outputValue = '_id',
+  outputValue = 'id',
   value,
   onChange,
 }) {

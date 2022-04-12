@@ -22,6 +22,7 @@ const rootReducer = (state, action) => {
   if (action.type === actionTypes.LOGOUT_SUCCESS) {
     state = undefined;
   }
+
   return appReducer(state, action);
 };
 

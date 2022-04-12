@@ -9,7 +9,7 @@ import { selectListItems } from '@/redux/crud/selectors';
 import uniqueId from '@/utils/uinqueId';
 
 export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
-  let { entity, dataTableColumns, dataTableTitle } = config;
+  let { entity,group, dataTableColumns, dataTableTitle } = config;
 
   dataTableColumns = [
     ...dataTableColumns,
@@ -31,11 +31,11 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
 
   const handelDataTableLoad = useCallback((pagination) => {
     const options = { page: pagination.current || 1 };
-    dispatch(crud.list({ entity, options }));
+    dispatch(crud.list({ entity,group, options }));
   }, []);
 
   useEffect(() => {
-    dispatch(crud.list({ entity }));
+    dispatch(crud.list({ entity,group }));
   }, []);
 
   return (
@@ -56,7 +56,7 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
       ></PageHeader>
       <Table
         columns={dataTableColumns}
-        rowKey={(item) => item._id}
+        rowKey={(item) => item.id}
         dataSource={items}
         pagination={pagination}
         loading={listIsLoading}

@@ -79,7 +79,7 @@ export default function UpdateItem({ config, UpdateForm }) {
       }
     }
 
-    const id = current._id;
+    const id = current.id;
     console.log('🚀 ~ file: UpdateItem.jsx ~ line 88 ~ onSubmit ~ fieldsValue', fieldsValue);
     dispatch(erp.update({ entity, id, jsonData: fieldsValue }));
   };

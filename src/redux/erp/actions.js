@@ -44,9 +44,9 @@ export const erp = {
 
       let data = await request.list({ entity, options });
 
-      if (data.success === true) {
+      if (data.errorCode === 0) {
         const result = {
-          items: data.result,
+          items: data.data,
           pagination: {
             current: parseInt(data.pagination.page, 10),
             pageSize: 10,

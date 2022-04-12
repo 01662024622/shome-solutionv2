@@ -86,7 +86,7 @@ export default function DataTable({ config, DataTableDropMenu }) {
       ></PageHeader>
       <Table
         columns={dataTableColumns}
-        rowKey={(item) => item._id}
+        rowKey={(item) => item.id}
         dataSource={items}
         pagination={pagination}
         loading={listIsLoading}

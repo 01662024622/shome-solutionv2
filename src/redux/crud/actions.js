@@ -36,7 +36,7 @@ export const crud = {
       });
     },
   list:
-    ({ entity, options = { page: 1 } }) =>
+    ({ entity, group,options = { page: 1 } }) =>
     async (dispatch) => {
       dispatch({
         type: actionTypes.REQUEST_LOADING,
@@ -46,14 +46,14 @@ export const crud = {
 
       let data = await request.list({ entity, options });
 
-      if (data.success === true) {
+      if (data.errorCode === 0) {
         const result = {
-          items: data.result,
+          items: data.data[group],
           pagination: {
-            current: parseInt(data.pagination.page, 10),
+            current: parseInt(options.page, 10), // total pages
             pageSize: 10,
             showSizeChanger: false,
-            total: parseInt(data.pagination.count, 10),
+            total: parseInt("50", 10), // count page
           },
         };
         dispatch({
